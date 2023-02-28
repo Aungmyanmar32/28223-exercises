@@ -55,6 +55,18 @@ app.delete("/users/:id", (req, res) => {
   res.send(users);
 });
 
+app.put("/users", (req, res) => {
+  const updateUserObj = req.body; //1
+
+  const userFound = users.find((user) => user.email === updateUserObj.email); //true
+
+  if (userFound) {
+    userFound.name = updateUserObj.name;
+    userFound.age = updateUserObj.age;
+  }
+
+  res.send(users);
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
